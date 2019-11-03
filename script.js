@@ -20,15 +20,8 @@ function shuffle(array) {
   }
 }
 
-// debug print
-function dp (text) {
-  if (debug) {console.log(text)};
-}
-
 // Lager HTML-kode for sprøsmål
 function lag_sporsmal(tall1, tall2) {
-  // dp ("func lag_sporsmal");
-  
   var x = "";
   if (Math.floor(Math.random() * 100) + 1 < 50) {
     brukersvar_forst = false;
@@ -47,10 +40,11 @@ function lag_sporsmal(tall1, tall2) {
 }
 
 function sjekk_svar (brukersvar) {
+  utregnetsum = parseInt(brukersvar) + parseInt(aktivt_tall);
   if (brukersvar_forst == true) {
-    regnestykke = brukersvar + "+" + aktivt_tall + "=" + vennetype;
+    regnestykke = brukersvar + "+" + aktivt_tall + "=" + utregnetsum;
   } else {
-    regnestykke = aktivt_tall + "+" + brukersvar + "=" + vennetype;
+    regnestykke = aktivt_tall + "+" + brukersvar + "=" + utregnetsum;
   }
   
   if ((vennetype - aktivt_tall - brukersvar) !== 0) {
@@ -63,9 +57,6 @@ function sjekk_svar (brukersvar) {
 }
 
 function skriv_nytt_sporsmal () {
-  dp ("func skriv_nytt_sporsmal");
-
-  
   if (oppgavenr != 0) {
     brukersvar = document.getElementById("svar").value;
     if (brukersvar == "" || !(brukersvar.match(/[0-9]{1}/))) {
